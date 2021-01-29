@@ -90,29 +90,52 @@ int main()
 
 int insertSortedLL(LinkedList *ll, int item)
 {
-	// add your code here
+// add your code here
+
 	ListNode* cur;
 	int i;
+	int s;
+	int c= ll -> size;
 
-	cur = ll -> head;
+	// insert nodes first;
 
-	if (cur == NULL)
-        return 0;
-    // check for identical int in the list;
+	insertNode(ll, c, item);
 
-    for (i=0; i < ll -> size ;i++){
 
-        cur = findNode(ll, i);
+    for (i=0 ; i < ((ll -> size)-1) ; i++){   // check for identicals;
 
-        if (cur -> item == item ){
+
+            cur = findNode(ll, i);
+
+            if((cur -> item) == item){
+
+
+            removeNode(ll, (c));
+
             return -1;
 
-        }
+            }
+
 
     }
 
 
-    return 0;
+
+    for (i=0; i < ((ll -> size)-1); i++){       // arrange the size in ascending order;
+
+        cur =  findNode(ll, i);
+        s = i;
+
+        if ((cur -> item) > item){
+
+            insertNode(ll, (s), item);
+            removeNode(ll, (ll -> size)-1);
+            return s;
+        }
+    }
+
+    return c;
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
