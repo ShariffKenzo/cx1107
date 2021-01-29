@@ -104,45 +104,49 @@ int main()
 void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 {
 	// add your code here
+	
+// add your code here
 	ListNode* cur1;
 	ListNode* cur2;
+	ListNode* temp;
 	int i;      // slots able to be held by ll1;
 	int j;      //size of ll2;
 	int k;      //counter for for-loop;
-	int z=1;    // addition 2 for insertion of node;
-	cur2 = ll2 -> head;
+    
 
 
-	i =  (ll1 -> size)-1;
-	j = (ll2 -> size);
 
-	if(j < i){
+	i =  (ll1 -> size);     //ll1 size;
+	j = (ll2 -> size);      //ll2 size;
 
-        for(k=1; k<=j; k++){
+	if(j <= i){          // can insert all nodes of ll2
 
-                cur1 = findNode(ll1, z);
-                insertNode(ll1, k, cur2 -> item);    // traverses ll2 and inserts in ll1;
-                z+=2;
+        for(k=0; k<j; k++){
+
+                cur2 = findNode(ll2, k);
+                insertNode(ll1, (2*k)+1, cur2 -> item);    // traverses ll2 and inserts in ll1;
+
 
         }
-
+        ll2 -> head = NULL;     //empty ll2;
 	}
 
 	else{
 
-        for(k=1; k<=i; i++){
+        for(k=0; k<i; k++){
 
-                cur1 = findNode(ll1, z);
-                insertNode(ll1, k, cur2 -> item);    // traverses ll2 and inserts in ll1;
-                z+=2;
 
+                cur2 = findNode(ll2, k);
+                insertNode(ll1, (2*k)+1, cur2 -> item);
         }
 
         // remnants in ll2;
-        ll2 -> head = findNode(ll2, i + 1);
+        ll2 -> head = findNode(ll2, i);
 
 
 	}
+
+
 
 
 
