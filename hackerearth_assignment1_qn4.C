@@ -111,36 +111,67 @@ int main()
 void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList)
 {
 	// add your code here
+	
+		// add your code here
 	ListNode* cur;
-	int i=0;
+	int i;
+	int j;
+
+
 
    if (ll -> head == NULL)
-        return;
-
-	if (ll -> size %2 == 0){  // even nodes;
-
-            resultFrontList -> head = ll -> head;
-            cur = findNode(ll, (ll -> size) / 2);
-            resultBackList -> head = cur;
-          //  resultBackList -> size = (ll -> size) /2;  // not necessary;
-            cur = findNode(ll, ((ll -> size)-2) /2);
-            cur -> next = NULL;
+   return;
 
 
-	}
-
-	else{
-             resultFrontList -> head = ll -> head;
-            cur = findNode(ll, ((ll -> size)+1) / 2);
-            resultBackList -> head = cur;
-          //  resultBackList -> size = (ll -> size) /2;  // not necessary;
-            cur = findNode(ll,  (((ll -> size)+1) / 2)-1);
-            cur -> next = NULL;
+ //   resultFrontList -> head = NULL;
+ //   resultBackList -> head = NULL;
 
 
+    if ((ll ->size) %2 ==0){                    //even nodes;
 
 
-	}
+        for (i=0; i< (ll -> size)/2; i++){          //front list;
+
+                cur = findNode(ll,i);
+                insertNode(resultFrontList, i, cur -> item);
+
+
+        }
+
+        for(j= (ll ->size)/2 ;j < (ll -> size); j++){
+
+            cur = findNode(ll,j);
+            insertNode(resultBackList, j-(ll -> size)/2, cur -> item);
+
+        }
+
+    }
+
+
+    else{
+
+
+        for (i=0; i< ((ll -> size)+1)/2; i++){          //front list;
+
+                cur = findNode(ll,i);
+                insertNode(resultFrontList, i, cur -> item);
+
+
+        }
+
+        for(j= ((ll ->size)+1)/2 ;j < (ll -> size); j++){
+
+            cur = findNode(ll,j);
+            insertNode(resultBackList, j-(((ll -> size)+1)/2), cur -> item);
+
+        }
+
+
+
+
+    }
+
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////
